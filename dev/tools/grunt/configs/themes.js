@@ -41,6 +41,16 @@ module.exports = {
         ],
         dsl: 'less'
     },
+    studio: {
+        area: 'frontend',
+        name: 'Studio1098/Theme',
+        locale: 'en_CA',
+        files: [
+            'css/styles-m',
+            'css/styles-l'
+        ],
+        dsl: 'less'
+    },
     backend: {
         area: 'adminhtml',
         name: 'Magento/backend',
