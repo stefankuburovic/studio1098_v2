@@ -3,7 +3,9 @@
     $productCollection = $block->getProductCollection();
 	foreach ($productCollection as $product)
 	{
-
+?>
+<img src="<?php echo $product["image"]; ?>" alt=""/>
+<?php
 		print_r($product->getName());
 		echo "&nbsp; &#8212; ";
 	}
