@@ -4,23 +4,30 @@ class Studio extends \Magento\Framework\View\Element\Template
 {
 	
 	protected $_productCollectionFactory;
+	protected $categoryFactory;
 	
     public function __construct(
+	\Magento\Catalog\Model\CategoryFactory $categoryFactory,
        \Magento\Backend\Block\Template\Context $context,
 	   \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
+	   
             array $data = []
 )
 {
+	$this->categoryFactory = $categoryFactory;
 	$this->_productCollectionFactory = $productCollectionFactory;
     parent::__construct($context, $data);
 }
-    public function getProductCollection()
+
+public function getCategory()
 {
-	$collection = $this->_productCollectionFactory->create();
-	$collection->addAttributeToSelect('*');
-	$collection->setPageSize(4);
-	return $collection;
-    //return 'Module Created Successfully by Fox! PRC :)';
+    $categoryId = $this->getCategoryId();
+    $category = $this->categoryFactory->create()->load($categoryId);
+    return $category;
+}
+  public function getProductCollection()
+{
+    return $this->getCategory()->getProductCollection()->addAttributeToSelect('*'); 
 }
 }
 ?>
